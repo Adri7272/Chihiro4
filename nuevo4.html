@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Fanpage Chihiro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300;400;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+body {
+            
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            letter-spacing: normal;
+            transition: filter 0.3s ease;
+        }
+.ojo{
+   top: 20px; 
+}
+        /* Estilo de la barra lateral */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #42607C;
+            color: white;
+            overflow-y: auto;
+            transition: right 0.3s ease;
+            padding: 20px;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+            display: none; /* Oculta inicialmente */
+        }
+
+        .sidebar.show {
+            display: block;
+            right: 0;
+        }
+
+        /* Botón de alternar barra */
+        .toggle-btn {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #39556e;
+            color:   white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            z-index: 1000;
+        }
+
+        .toggle-btn:hover {
+            background-color:  #FF6666;
+        }
+
+        /* Acordeón */
+        .accordion {
+            background-color: #444;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            border: none;
+            outline: none;
+            text-align: left;
+            width: 100%;
+            transition: background-color 0.3s ease;
+            margin-bottom: 5px;
+        }
+
+        .accordion:hover {
+            background-color: #000000;
+        }
+
+        .accordion.active {
+            background-color: #000000;
+        }
+
+        .panel {
+            display: none;
+            background-color:  #42607C;
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        .panel.show {
+            display: block;
+        }
+
+        /* Contenido principal */
+        .content {
+            margin-left: 20px;
+            padding: 20px;
+        }
+
+        /* Estilos adicionales para la personalización */
+        .config-panel {
+            display: none;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            background-color: #000000;
+        }
+
+        .config-panel label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .config-panel input[type="color"],
+        .config-panel select {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .config-panel button {
+            display: block;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: #fff;
+            padding: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-low {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-high {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-bw {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        img {
+            margin-bottom: 10px;
+        }
+        .ajas{
+            margin-top: 50px;
+        }
+
+
+
+
+        /* ANTIGUO */
+        body {
+            font-family: 'Londrina Solid', sans-serif;
+            background-color: #5a4635;
+            color: #000000;
+            margin: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 80px;
+            color: #f2f2f2;
+        }
+        h2 {
+            text-align: center;
+            font-size: 20px;
+          padding-top: -5px;
+        }
+        .social-cards {
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 50px;
+            padding-bottom: 50px;
+        }
+        .card {
+            background-color: #ffffff;
+            width: 300px;
+            height: 670px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+     
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+    
+
+        .card2 {
+            background-color: #333;
+            width: 300px;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+        .card2:hover {
+            transform: scale(1.05);
+        }
+
+        .card:hover {
+    transition: box-shadow 0.3s ease; /* Animación suave para la sombra */
+}
+
+.hover-shadow:card {
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5); /* Sombra al hacer hover */
+}
+
+
+
+        .card2 img {
+            width: 100%;
+            border-radius: 10px;
+        }
+    
+
+
+        .flowers {
+            position: absolute;
+            top: 10px;
+            left: -30px;
+            z-index: -1;
+        }
+        .flowers-right {
+            position: absolute;
+            top: 10px;
+            right: -30px;
+            z-index: -1;
+            transform: scaleX(-1); /* Reflejar flores a la derecha */
+        }
+
+        .fb-container {
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+     
+
+        }
+        .fb-iframe {
+            width: 80%;
+            height: 40vh;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+.a{
+margin-top: -50px;
+float: center;
+margin-left: -890px;
+position: absolute;
+margin-top: 30px;
+}
+
+p{
+   text-align: center; 
+  
+}
+
+footer {
+            background-color:#ebebeb ;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            width: 100%;
+            clear: both;
+        }
+
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+   
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            font-size: 30px;
+        }
+
+        .pagination a {
+            color: black;
+            padding: 8px 16px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            margin: 0 4px;
+            transition: background-color 0.3s;
+        }
+
+        .pagination a:hover {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <button class="toggle-btn" onclick="toggleSidebar()"><i class="fa-solid fa-person" style="font-size: 28px; color: #ffffff;"></i> Menú </button>
+    <div class="sidebar" id="sidebar">
+        <h2 class="ajas">Menú de accesibilidad</h2>
+        <!-- Sección 1 -->
+        <button class="accordion">Texto y colores</button>
+        <div class="panel">
+            <div class="pr">
+                <span id="fontDesc">Tipos de fuente y tamaños que se utilizarán en esta página</span>
+                <button aria-describedby="fontDesc" id="fontB" type="button">Fuentes</button>
+            </div>
+            <div class="config-panel" id="fontPanel">
+                <label for="fontSelect">Tipo de Fuente:</label>
+                <select id="fontSelect">
+                    <option value="Arial">Arial</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                </select>
+                <label for="fontSize">Tamaño de Fuente:</label>
+                <select id="fontSize">
+                    <option value="16px">16px</option>
+                    <option value="18px">18px</option>
+                    <option value="20px">20px</option>
+                    <option value="24px">24px</option>
+                </select>
+                <button onclick="applyFont()">Aplicar Fuente</button>
+            </div>
+            <div>
+                <span id="colorDesc">Colores que se utilizarán en esta página</span>
+                <button aria-describedby="colorDesc" id="colorB" type="button">Colores</button>
+            </div>
+            <div class="config-panel" id="colorPanel">
+                <label for="bgColor">Color de Fondo:</label>
+                <input type="color" id="bgColor" value="#ffffff">
+                <label for="textColor">Color de Texto:</label>
+                <input type="color" id="textColor" value="#000000">
+                <button onclick="applyColors()">Aplicar Colores</button>
+            </div>
+        </div>
+
+        <!-- Sección 2 -->
+        <button class="accordion">Personalizar la página</button>
+        <div class="panel">
+            <p>Saturación del contenido</p>
+            <div>
+                <button class="btn btn-low" onclick="setSaturation('low')">Saturación Baja</button>
+                <button class="btn btn-high" onclick="setSaturation('high')">Saturación Alta</button>
+                <button class="btn btn-bw" onclick="setSaturation('bw')">Blanco y Negro</button>
+            </div>
+            <div>
+                <p>Visualizar imagenes</p>
+                <button onclick="toggleImages()">Mostrar/Ocultar Imágenes</button>
+            </div>
+        </div>
+
+        <!-- Sección 3 -->
+        <button class="accordion">Leer página</button>
+        <div class="panel">
+            <p>Presione para escuchar el contenido de la página</p>
+            <button onclick="leerPagina()">Texto en voz alta</button>
+        </div>
+    </div>
+
+
+
+    <h1>CONTACTANOS</h1>
+    <div class="social-cards">
+        <p class="a">INSTAGRAM</p>
+    <div class="w3-container fb-container w3-col l6 card ">
+        
+        <script src="https://static.elfsight.com/platform/platform.js" async></script>
+<div class="elfsight-app-a126613d-19be-4b67-9c47-554debe5bb5f" data-elfsight-app-lazy></div>
+    
+</div> 
+
+ 
+
+                  
+        <div class="card">
+            <h2>FACEBOOK</h2>
+            <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FTheInsightLat%2Fposts%2Fpfbid02dwvrCikNeUEKqrNEx1FKr4tFCw4XLyztDpF9CpSKRbrKJxzbfqSqi7ERGZJj6fBal&show_text=true&width=500" width="300" height="528" style="border:none;overflow:hidden"  class="aja"   scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            
+            <p>Únete a nuestra comunidad de fanáticos de Studio Ghibli.</p>
+        </div>
+        <div class="card">
+            <div class="aja">
+                <h2>TWITTER</h2>
+            <blockquote class="twitter-tweet"><p lang="es" dir="ltr">«No, no tengo ningún trabajo para ti, así que empieza a olvidarte de eso. Aquí ya tengo a todos los inútiles que necesito… ¿O es que tal vez aceptarías hacer el trabajo más duro y desagradable que tengo hasta que exhales tu último suspiro?»<br><br>🗨️ Yubaba<br>🎬 &#39;El viaje de Chihiro&#39; <a href="https://t.co/WHuVcMa4Ke">pic.twitter.com/WHuVcMa4Ke</a></p>&mdash; Generación GHIBLI (@gen_ghibli) <a href="https://twitter.com/gen_ghibli/status/1838609656886739032?ref_src=twsrc%5Etfw">September 24, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+               
+             
+            </a>
+            <p>Las mejores imágenes y teorías del universo de Ghibli.</p>
+        </div>
+    </div>
+    </div>
+
+    <!-- Decorative Flowers -->
+    <img src="img/flor.png" height="200px" width="350px" class="flowers" alt="Flores decorativas">
+    <img src="img/flor.png" height="200px" width="350px" class="flowers-right" alt="Flores decorativas derecha">
+    
+
+    <script>
+        // Función para alternar la barra lateral
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('show');
+        }
+
+        // Funcionalidad del acordeón
+        const accordions = document.querySelectorAll('.accordion');
+        accordions.forEach((accordion) => {
+            accordion.addEventListener('click', () => {
+                accordion.classList.toggle('active');
+                const panel = accordion.nextElementSibling;
+                panel.classList.toggle('show');
+            });
+        });
+
+        // Mostrar/Ocultar paneles
+        document.getElementById("fontB").onclick = () => togglePanel("fontPanel");
+        document.getElementById("colorB").onclick = () => togglePanel("colorPanel");
+
+        function togglePanel(panelId) {
+            const panel = document.getElementById(panelId);
+            panel.style.display = panel.style.display === "none" ? "block" : "none";
+        }
+
+        // Aplicar fuentes
+        function applyFont() {
+            const font = document.getElementById("fontSelect").value;
+            const fontSize = document.getElementById("fontSize").value;
+            document.body.style.fontFamily = font;
+            document.body.style.fontSize = fontSize;
+        }
+
+        // Aplicar colores
+        function applyColors() {
+            const bgColor = document.getElementById("bgColor").value;
+            const textColor = document.getElementById("textColor").value;
+            document.body.style.backgroundColor = bgColor;
+            document.body.style.color = textColor;
+        }
+
+        // Cambiar saturación
+        function setSaturation(mode) {
+            const body = document.body;
+            if (mode === 'low') {
+                body.style.filter = 'saturate(50%)';
+            } else if (mode === 'high') {
+                body.style.filter = 'saturate(200%)';
+            } else if (mode === 'bw') {
+                body.style.filter = 'grayscale(100%)';
+            }
+        }
+
+        // Leer la página en voz alta
+        function leerPagina() {
+            const texto = document.body.innerText; // Obtener el texto de la página
+            const speech = new SpeechSynthesisUtterance(texto); // Crear la instancia para hablar
+            speechSynthesis.speak(speech); // Reproducir el texto
+        }
+
+        // Función para mostrar/ocultar imágenes
+        function toggleImages() {
+            const images = document.querySelectorAll('img');
+            images.forEach((img) => {
+                img.style.display = img.style.display === "none" ? "block" : "none";
+            });
+        }
+    </script>  
+
+
+    <footer>
+        <div class="pagination">
+            <a href="impacto3.1.html">&laquo;</a>
+            <a href="premios3.2.html">5</a>
+            <a href="mercha3.3.html">6</a>
+            <a href="nuevo4.html">7</a>
+            <a href="index1.html">8</a>
+            <a href="index.html">&raquo;</a>
+        </div>
+    </footer>
+</body>
+</html>

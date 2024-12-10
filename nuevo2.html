@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="w3.css">
+    <link rel="stylesheet" href="misreglas.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300;400;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style> 
+
+body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            letter-spacing: normal;
+            transition: filter 0.3s ease;
+        }
+.ojo{
+   top: 20px; 
+}
+        /* Estilo de la barra lateral */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #42607C;
+            color: white;
+            overflow-y: auto;
+            transition: right 0.3s ease;
+            padding: 20px;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+            display: none; /* Oculta inicialmente */
+        }
+
+        .sidebar.show {
+            display: block;
+            right: 0;
+        }
+
+        /* Botón de alternar barra */
+        .toggle-btn {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #39556e;
+            color:   white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            z-index: 1000;
+        }
+
+        .toggle-btn:hover {
+            background-color:  #FF6666;
+        }
+
+        /* Acordeón */
+        .accordion {
+            background-color: #444;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            border: none;
+            outline: none;
+            text-align: left;
+            width: 100%;
+            transition: background-color 0.3s ease;
+            margin-bottom: 5px;
+        }
+
+        .accordion:hover {
+            background-color: #000000;
+        }
+
+        .accordion.active {
+            background-color: #000000;
+        }
+
+        .panel {
+            display: none;
+            background-color:  #42607C;
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        .panel.show {
+            display: block;
+        }
+
+        /* Contenido principal */
+        .content {
+            margin-left: 20px;
+            padding: 20px;
+        }
+
+        /* Estilos adicionales para la personalización */
+        .config-panel {
+            display: none;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            background-color: #000000;
+        }
+
+        .config-panel label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .config-panel input[type="color"],
+        .config-panel select {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .config-panel button {
+            display: block;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: #fff;
+            padding: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-low {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-high {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-bw {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        img {
+            margin-bottom: 10px;
+        }
+        .ajas{
+            margin-top: 50px;
+        }
+
+
+
+/* ANTIGUO*/
+
+     body {
+        margin: 0;
+        font-family:'Londrina Solid';
+       
+        
+        overflow-x: hidden;
+    }
+
+    .titulo {
+            font-family:'Londrina Solid';
+            font-weight: bold;  
+            margin-right: 50px;      
+        }
+
+   .titulo2 {
+            margin-left: 2px;   
+            font-family:'Londrina Solid';
+            font-weight: bold;        
+        }
+        .color1 {
+            color: #FF5733; /* Primer color */
+            font-size: 55px;
+            margin-left: 602px;
+        }
+        .color2 {
+            font-size: 55px;
+           
+        }
+
+
+
+    /* Sección de personajes */
+    .characters-section {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        justify-content: center;
+
+        margin-top: 10px;
+        
+    }
+
+    .character-card {
+        
+        box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 1);
+        width: 290px;
+        padding: 20px;
+        margin-bottom: 70px;
+       
+        overflow: hidden;
+        text-align: center;
+        transition: transform 0.5s ease, box-shadow 0.4s ease;
+        border: 4px solid black;
+        
+    }
+
+    .character-card2 {
+        
+        box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 1);
+        width: 290px;
+        padding: 20px;
+        margin-top: 50px;
+       
+      
+        text-align: center;
+        transition: transform 0.5s ease, box-shadow 0.4s ease;
+        border: 4px solid black;
+    }
+
+    .character-card2:hover {
+        transform: rotate(5deg) scale(1.1);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .character-card2 img {
+        width: 80%;
+        height: 200px;
+        margin-top: 20px;
+        object-fit: cover;
+        border-bottom: 4px solid black;
+        transition: filter 0.5s ease;
+    }
+
+    .character-card2 img:hover {
+        filter: hue-rotate(90deg);
+    }
+
+    .character-info {
+        margin-top: 15px;
+     
+    }
+    
+
+    .character-card:hover {
+        transform: rotate(5deg) scale(1.1);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .character-card img {
+        width: 80%;
+        height: 200px;
+        margin-top: 20px;
+        object-fit: cover;
+        border-bottom: 4px solid black;
+        transition: filter 0.5s ease;
+    }
+
+    .character-card img:hover {
+        filter: hue-rotate(90deg);
+    }
+
+    .character-info {
+        margin-top: 15px;
+     
+    }
+
+
+
+
+
+    .character-info h3 {
+        margin: 0px 0;
+        font-size: 24px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        background: black;
+        color: #fff;
+        padding: 10px;
+        font-family:'Londrina Solid';
+        display: inline-block;
+    }
+
+    .character-info p {
+        font-size: 13px;
+        padding: 10px;
+        border-radius: 10px;
+        
+     
+    }
+
+    .character-info p:hover {
+        background-color: rgba(255, 255, 255, 0.7);
+        color: black;
+    }
+
+    /* Texto en movimiento */
+    .texto-en-movimiento {
+        font-size: 30px;
+        
+        white-space: nowrap;
+        overflow: hidden;
+        display: inline-block;
+       
+        margin: 40px 0;
+        animation: moverTexto 6s linear infinite;
+    }
+
+    @keyframes moverTexto {
+        0% {
+            transform: translateX(100%);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+
+
+
+
+
+    .characters-section3 {
+        
+        flex-wrap: wrap;
+        gap: 40px;
+        justify-content: center;
+
+        margin-top: 5px;
+        
+    }
+
+    .character-card3 {
+      
+        background: white;
+        width: 290px;
+        
+        overflow: hidden;
+        text-align: center;
+        transition: transform 0.5s ease, box-shadow 0.4s ease;
+        border: 4px solid black;
+        
+    }
+
+    .character-info3 {
+        margin-top: 15px;
+     
+    }
+    
+
+    .character-card3:hover {
+        transform: rotate(5deg) scale(1.1);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .character-card3 img {
+        width: 50%;
+        height: 130px;
+        margin-top: 20px;
+        margin-bottom: -30px;
+      
+        object-fit: cover;
+        border-bottom: 4px solid black;
+        transition: filter 0.5s ease;
+    }
+
+    .character-card3 img:hover {
+        filter: hue-rotate(90deg);
+    }
+
+
+
+
+
+    .character-info3 h3 {
+        margin: 0px 0;
+        font-size: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        background: black;
+      
+        padding: 6px;
+        font-family:'Londrina Solid';
+        display: inline-block;
+        margin-top: 17px;
+        margin-bottom: -35px;
+    }
+
+    .character-info3 p {
+        font-size: 12px;
+        padding: 10px;
+        border-radius: 10px;
+        color: #000000;
+     
+    }
+
+    .character-info3 p:hover {
+        background-color: rgba(255, 255, 255, 0.7);
+        color: black;
+    }
+
+    /* Texto en movimiento */
+    .texto-en-movimiento3 {
+        font-size: 30px;
+       
+        white-space: nowrap;
+        overflow: hidden;
+        display: inline-block;
+        position: relative;
+        margin: 40px 0;
+        animation: moverTexto 6s linear infinite;
+    }
+
+    @keyframes moverTexto {
+        0% {
+            transform: translateX(100%);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+
+    .characters-section4 {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        justify-content: center;
+
+        margin-top: -30px;
+  
+      }
+
+
+
+      footer {
+            background-color:#000000 ;
+            color: rgb(255, 255, 255);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            width: 100%;
+            clear: both;
+        }
+
+    
+   
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            font-size: 30px;
+        }
+
+        .pagination a {
+            color: rgb(255, 255, 255);
+            padding: 8px 16px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            margin: 0 4px;
+            transition: background-color 0.3s;
+        }
+
+        .pagination a:hover {
+            background-color: #008080;
+          } 
+    
+.cat{
+  margin-left: 10px;
+}
+.cat2{
+  margin-left: 90px;
+}
+
+    </style>
+
+</head>
+<body>
+    <button class="toggle-btn" onclick="toggleSidebar()"><i class="fa-solid fa-person" style="font-size: 28px; color: #ffffff;"></i> Menú </button>
+    <div class="sidebar" id="sidebar">
+        <h2 class="ajas">Menú de accesibilidad</h2>
+        <!-- Sección 1 -->
+        <button class="accordion">Texto y colores</button>
+        <div class="panel">
+            <div class="pr">
+                <span id="fontDesc">Tipos de fuente y tamaños que se utilizarán en esta página</span>
+                <button aria-describedby="fontDesc" id="fontB" type="button">Fuentes</button>
+            </div>
+            <div class="config-panel" id="fontPanel">
+                <label for="fontSelect">Tipo de Fuente:</label>
+                <select id="fontSelect">
+                    <option value="Arial">Arial</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                </select>
+                <label for="fontSize">Tamaño de Fuente:</label>
+                <select id="fontSize">
+                    <option value="16px">16px</option>
+                    <option value="18px">18px</option>
+                    <option value="20px">20px</option>
+                    <option value="24px">24px</option>
+                </select>
+                <button onclick="applyFont()">Aplicar Fuente</button>
+            </div>
+            <div>
+                <span id="colorDesc">Colores que se utilizarán en esta página</span>
+                <button aria-describedby="colorDesc" id="colorB" type="button">Colores</button>
+            </div>
+            <div class="config-panel" id="colorPanel">
+                <label for="bgColor">Color de Fondo:</label>
+                <input type="color" id="bgColor" value="#ffffff">
+                <label for="textColor">Color de Texto:</label>
+                <input type="color" id="textColor" value="#000000">
+                <button onclick="applyColors()">Aplicar Colores</button>
+            </div>
+        </div>
+
+        <!-- Sección 2 -->
+        <button class="accordion">Personalizar la página</button>
+        <div class="panel">
+            <p>Saturación del contenido</p>
+            <div>
+                <button class="btn btn-low" onclick="setSaturation('low')">Saturación Baja</button>
+                <button class="btn btn-high" onclick="setSaturation('high')">Saturación Alta</button>
+                <button class="btn btn-bw" onclick="setSaturation('bw')">Blanco y Negro</button>
+            </div>
+            <div>
+                <p>Visualizar imagenes</p>
+                <button onclick="toggleImages()">Mostrar/Ocultar Imágenes</button>
+            </div>
+        </div>
+
+        <!-- Sección 3 -->
+        <button class="accordion">Leer página</button>
+        <div class="panel">
+            <p>Presione para escuchar el contenido de la página</p>
+            <button onclick="leerPagina()">Texto en voz alta</button>
+        </div>
+    </div>
+
+
+
+
+
+<div class="w3-row">
+    <div class="w3-col l6 w3-white altura">
+      <h1 class="titulo">
+        <span class="color1">PERSO</span>
+    </h1> 
+      <section class="characters-section">
+        <div class="character-card">
+            <img src="img/1.jpg" alt="Veronica sawyer">
+            <div class="character-info">
+                <h3>Chihiro</h3>
+                <p> Chihiro es una niña caprichosa que debe adentrarse en un mundo de fantasía para poder salvar a sus padres, convertidos en cerdos.</p>
+            </div>
+        </div>
+        <div class="character-card2">
+            <img src="img/3.jpg" alt="Personaje 2">
+            <div class="character-info">
+                <h3>Haku</h3>
+                <p>Haku es un joven misterioso que inicialmente trabaja para Yubaba, la gobernante del baño público donde Chihiro es forzada a trabajar después de que sus padres son transformados en cerdos.</p>
+            </div>
+        </div>
+ 
+
+
+    </div>
+
+    <div class="w3-col l6 w3-teal altura"> 
+      <h1 class="titulo2">
+        <span class="color2">NAJES</span>
+      </h1>
+      <section class="characters-section">
+        <div class="character-card3">
+            <img src="img/4.jpg" alt="Veronica sawyer">
+            <div class="character-info3">
+                <h3>YUBABA</h3>
+                <p> Yubaba es una bruja que vive en una casa de baños para espíritus y es la principal antagonista de la historia</p>
+            </div>
+        </div>
+        <div class="character-card3">
+            <img src="img/2.jpg" alt="Personaje ">
+            <div class="character-info3">
+                <h3>SIN CARA</h3>
+                <p>Es un espíritu de la película '' El viaje de chihiro'', es un amigo de Chihiro, tiene la capacidad de crear, y de asimilar determinadas características </p>
+            </div>    
+        </div>
+        <section class="characters-section4">
+          <div class="character-card3 cat2">
+              <img src="img/5.jpg" alt="Veronica sawyer">
+              <div class="character-info3">
+                  <h3>LIN</h3>
+                  <p>Lin se encuentra con Chihiro cuando Kamaji le dice que la acompañe con Yubaba, Lin pensaba que era un homicidio pero la acompaña igual. </p>
+              </div>
+          </div>
+          <div class="character-card3 cat">
+            <img src="img/6.jpg" alt="Veronica sawyer">
+            <div class="character-info3">
+                <h3>ZENIBA</h3>
+                <p>Es la hermana gemela de Yubaba. Se presenta en el climax de la historia siendo una persona más calmada a comparación de su hermana, y aunque en la historia es llamada bruja aterradora </p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    // Función para alternar la barra lateral
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('show');
+    }
+
+    // Funcionalidad del acordeón
+    const accordions = document.querySelectorAll('.accordion');
+    accordions.forEach((accordion) => {
+        accordion.addEventListener('click', () => {
+            accordion.classList.toggle('active');
+            const panel = accordion.nextElementSibling;
+            panel.classList.toggle('show');
+        });
+    });
+
+    // Mostrar/Ocultar paneles
+    document.getElementById("fontB").onclick = () => togglePanel("fontPanel");
+    document.getElementById("colorB").onclick = () => togglePanel("colorPanel");
+
+    function togglePanel(panelId) {
+        const panel = document.getElementById(panelId);
+        panel.style.display = panel.style.display === "none" ? "block" : "none";
+    }
+
+    // Aplicar fuentes
+    function applyFont() {
+        const font = document.getElementById("fontSelect").value;
+        const fontSize = document.getElementById("fontSize").value;
+        document.body.style.fontFamily = font;
+        document.body.style.fontSize = fontSize;
+    }
+
+    // Aplicar colores
+    function applyColors() {
+        const bgColor = document.getElementById("bgColor").value;
+        const textColor = document.getElementById("textColor").value;
+        document.body.style.backgroundColor = bgColor;
+        document.body.style.color = textColor;
+    }
+
+    // Cambiar saturación
+    function setSaturation(mode) {
+        const body = document.body;
+        if (mode === 'low') {
+            body.style.filter = 'saturate(50%)';
+        } else if (mode === 'high') {
+            body.style.filter = 'saturate(200%)';
+        } else if (mode === 'bw') {
+            body.style.filter = 'grayscale(100%)';
+        }
+    }
+
+    // Leer la página en voz alta
+    function leerPagina() {
+        const texto = document.body.innerText; // Obtener el texto de la página
+        const speech = new SpeechSynthesisUtterance(texto); // Crear la instancia para hablar
+        speechSynthesis.speak(speech); // Reproducir el texto
+    }
+
+    // Función para mostrar/ocultar imágenes
+    function toggleImages() {
+        const images = document.querySelectorAll('img');
+        images.forEach((img) => {
+            img.style.display = img.style.display === "none" ? "block" : "none";
+        });
+    }
+</script>
+
+
+
+<footer>
+    <div class="pagination">
+        <a href="index.html">&laquo;</a>
+        <a href="nuevo1.html">1</a>
+        <a href="nuevo2.html">2</a>
+        <a href="nuevo3.html">3</a>
+        <a href="impacto3.1.html">4</a>
+        <a href="premios3.2.html">5</a>
+        <a href="mercha3.3.html">&raquo;</a>
+    </div>
+</footer>
+
+  
+</body>
+</html>

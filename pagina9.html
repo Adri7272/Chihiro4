@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>El Mundo de los Espíritus</title>
+    <meta name="description" content="Explora los lugares mágicos de El Viaje de Chihiro en realidad virtual.">
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  </head>
+  <body>
+
+
+
+
+    <style>
+   /* Estilo del menú de navegación */
+   .navbar {
+            background-color: #42607C;
+            padding: 10px 0;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: top;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #e34f4f;
+            color: white;
+        }
+
+        .navbar a:active {
+            background-color: #FF3333;
+            color: white;
+        }
+
+        /* Para que el menú sea totalmente responsive */
+        @media (max-width: 600px) {
+            .navbar a {
+                float: none;
+                display: block;
+                text-align: top;
+            }
+        }
+        </style>
+
+<div class="navbar w3-center">
+  <a href="index.html">Inicio</a>
+
+  <a href="pagina9.html">REALIDAD VIRTUAL
+  
+  </a>
+
+</div>
+
+
+    <a-scene cursor="rayOrigin: mouse">
+
+      <!-- Título -->
+      <a-text
+        value="El Mundo de los Espíritus"
+        align="center"
+        position="1 3 -3"
+        color="yellow"
+        scale="2 2 2"
+        extrude="22"
+        font="https://cdn.aframe.io/fonts/mozillavr.fnt">
+      </a-text>
+
+      <!-- Cámara -->
+      <a-entity position="0 1.6 0" camera look-controls></a-entity>
+
+      <!-- Fondo -->
+      <a-sky color="#572364"></a-sky>
+
+      <!-- Menú con imágenes dispuestas horizontalmente -->
+      <a-entity id="menu" position="0 1.5 -3" rotation="0 0 0">
+        <!-- Casa de Baños -->
+        <a-plane
+          id="bathhouseButton"
+          src="https://pbs.twimg.com/media/Cdyd1isVIAAbPH8.jpg"
+          position="-2.0 0 0"
+          width="2"
+          height="1.2"
+          class="raycastable"
+          event-set__mouseenter="scale: 1.1 1.1 1.1"
+          event-set__mouseleave="scale: 1 1 1">
+        </a-plane>
+
+        <!-- Tren -->
+        <a-plane
+          id="trainButton"
+          src="https://pbs.twimg.com/media/CcQiN8cUsAUd31T.jpg"
+          position="0 0 0"
+          width="0.7"
+          height="1.2"
+          class="raycastable"
+          event-set__mouseenter="scale: 1.1 1.1 1.1"
+          event-set__mouseleave="scale: 1 1 1">
+        </a-plane>
+
+        <!-- Casa de Zeniba -->
+        <a-plane
+          id="zenibaHouseButton"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTV8YBOpz9DihNSXFiqvJE9oai5FAOuKEO0w&s"
+          position="2.3 0 0"
+          width="2.7"
+          height="1.2"
+          class="raycastable"
+          event-set__mouseenter="scale: 1.1 1.1 1.1"
+          event-set__mouseleave="scale: 1 1 1">
+        </a-plane>
+      </a-entity>
+
+      <!-- Esferas flotantes -->
+      <a-sphere position="-3 2 -4" radius="0.7" color="#e6b9db" animation="property: position; to: -3 2.5 -4; dur: 2000; dir: alternate; loop: true"></a-sphere>
+      <a-sphere position="-2 1 -3" radius="0.4" color="#a8dc9b" animation="property: position; to: 1 1.5 -3; dur: 1500; dir: alternate; loop: true"></a-sphere>
+      <a-sphere position="3 1 -2" radius="0.2" color="#b41b1b" animation="property: position; to: 3 3.5 -5; dur: 1800; dir: alternate; loop: true"></a-sphere>
+      <a-sphere position="0 1 -2" radius="0.1" color="#ffffbf" animation="property: position; to: 0 2.3 -2; dur: 1200; dir: alternate; loop: true"></a-sphere>
+
+      <!-- Info Panel -->
+      <a-entity id="infoPanel" visible="false" position="0 1.2 -2.5">
+        <a-plane
+          color="#333"
+          width="2"
+          height="1"
+          opacity="0.9">
+        </a-plane>
+        <a-text
+          id="infoText"
+          value="Haz clic en un lugar para más detalles."
+          align="center"
+          position="0 0 0.01"
+          color="white"
+          width="1.8">
+        </a-text>
+      </a-entity>
+    </a-scene>
+
+    <script>
+      // Lógica de interacciones
+      const infoPanel = document.querySelector('#infoPanel');
+      const infoText = document.querySelector('#infoText');
+
+      // Añadir eventos a los botones
+      document.querySelector('#bathhouseButton').addEventListener('click', () => {
+        infoPanel.setAttribute('visible', true);
+        infoText.setAttribute('value', 'La Casa de los Banos no es solo un spa magico para los espiritus; es un reflejo de la sociedad humana, especialmente en terminos de trabajo, consumo y explotacion. El lugar es un negocio que necesita mantener la eficiencia y el trabajo constante, con una jerarquia estricta.');
+      });
+
+      document.querySelector('#trainButton').addEventListener('click', () => {
+        infoPanel.setAttribute('visible', true);
+        infoText.setAttribute('value', 'El tunel marca la transición del mundo real al mundo mágico de los espíritus. Un lugar completamente diferente, lleno de seres y reglas que desafían la lógica humana. Este túnel simboliza el paso de lo cotidiano a lo extraordinario, de lo conocido a lo desconocido.');
+      });
+
+      document.querySelector('#zenibaHouseButton').addEventListener('click', () => {
+        infoPanel.setAttribute('visible', true);
+        infoText.setAttribute('value', 'Casa de Zeniba: Hogar de sabiduria y magia.');
+      });
+
+
+   
+    </script>
+  </body>
+</html>

@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retro-Futuro Animado</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bahianita&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300;400;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+   body {
+            
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            letter-spacing: normal;
+            transition: filter 0.3s ease;
+        }
+.ojo{
+   top: 20px; 
+}
+        /* Estilo de la barra lateral */
+        .sidebar {
+          z-index: 9999; 
+            position: fixed;
+            top: 0;
+            right: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #42607C;
+            color: white;
+            overflow-y: auto;
+            transition: right 0.3s ease;
+            padding: 20px;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+            display: none; /* Oculta inicialmente */
+        }
+
+        .sidebar.show {
+            display: block;
+            right: 0;
+        }
+
+        /* Botón de alternar barra */
+        .toggle-btn {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #39556e;
+            color:   white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            z-index: 1000;
+        }
+
+        .toggle-btn:hover {
+            background-color:  #FF6666;
+        }
+
+        /* Acordeón */
+        .accordion {
+            background-color: #444;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            border: none;
+            outline: none;
+            text-align: left;
+            width: 100%;
+            transition: background-color 0.3s ease;
+            margin-bottom: 5px;
+        }
+
+        .accordion:hover {
+            background-color: #000000;
+        }
+
+        .accordion.active {
+            background-color: #000000;
+        }
+
+        .panel {
+            display: none;
+            background-color:  #42607C;
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        .panel.show {
+            display: block;
+        }
+
+        /* Contenido principal */
+        .content {
+            margin-left: 20px;
+            padding: 20px;
+        }
+
+        /* Estilos adicionales para la personalización */
+        .config-panel {
+            display: none;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            background-color: #000000;
+        }
+
+        .config-panel label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .config-panel input[type="color"],
+        .config-panel select {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .config-panel button {
+            display: block;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: #fff;
+            padding: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-low {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-high {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-bw {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        img {
+            margin-bottom: 10px;
+        }
+        .ajas{
+            margin-top: 50px;
+        }
+
+
+
+
+
+
+   /* ANTIGUOOOOOOOOOOOOOOOOOOOOOOOO*/
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .window {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+        .book-cover {
+            
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+      
+        .window p {
+            font-size: 1em;
+            line-height: 1.5;
+        }
+    
+      
+        .price {
+            font-size: 1.5em;
+            margin-top: 10px;
+            color: #ff5f6d;
+            margin: 10px;
+            border: 6px;
+            border: 5px solid #ff69b4; /* Color del borde */
+            padding: 20px;
+            display: inline-block;
+            margin: 20px;
+            font-size: 18px;
+            background-color: #000000;
+            }
+      
+
+ 
+        .price:hover {
+          background: #ffc371;
+
+          }
+        .pixel-flower {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+        }
+        .flower1 {
+            top: -20px;
+            left: -20px;
+            width: 200px;
+            height: 200px;
+        }
+        .flower2 {
+            top: -20px;
+            right: -20px;
+            width: 200px;
+            height: 200px;
+        }
+        .flower3 {
+            bottom: -20px;
+            left: -20px;
+            width: 170px;
+            height: 170px;
+        }
+        .flower4 {
+            bottom: -20px;
+            right: -20px;
+            width: 200px;
+            height: 200px;
+        }
+        .review {
+            background: rgba(255, 105, 180, 0.2); /* Fondo rosa */
+            border: 2px solid #ff69b4; /* Borde rosa */
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 10px;
+           
+        }
+        .review h2 {
+            color: #ff69b4; /* Color del título */
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+ /* AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA */
+
+    body {
+      font-family: 'Bahianita', sans-serif;
+      font-size: 18px;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    h1 {
+      color: linear-gradient(circle rgb(255, 192, 167), #f7ff8b );
+      font-size: 68px;
+    }
+    p {
+      font-size: 20px;
+      margin: 20px 0;
+    }
+    .o{
+      color: aliceblue;
+    }
+    .outlined-text {
+            font-size: 94px;
+            color: rgb(255, 239, 167); /* Color de la letra */
+            -webkit-text-stroke: 0.1px #000000; /* Grosor y color del borde */
+            font-weight: bold;
+        }
+/* Geeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            font-size: 30px;
+        }
+
+        .pagination a {
+            color: rgb(255, 255, 255);
+            padding: 8px 16px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            margin: 0 4px;
+            transition: background-color 0.3s;
+        }
+
+        .pagination a:hover {
+            background-color: #ca51b8;
+      
+        }    
+        
+        footer {
+            background-color:rgba(255, 105, 180, 0.2) ;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            width: 100%;
+            clear: both;
+            margin-top: 50px;
+        }
+
+      
+
+  </style>
+</head>
+<body>
+
+  <button class="toggle-btn" onclick="toggleSidebar()"><i class="fa-solid fa-person" style="font-size: 28px; color: #ffffff;"></i> Menú </button>
+  <div class="sidebar" id="sidebar">
+      <h2 class="ajas">Menú de accesibilidad</h2>
+      <!-- Sección 1 -->
+      <button class="accordion">Texto y colores</button>
+      <div class="panel">
+          <div class="pr">
+              <span id="fontDesc">Tipos de fuente y tamaños que se utilizarán en esta página</span>
+              <button aria-describedby="fontDesc" id="fontB" type="button">Fuentes</button>
+          </div>
+          <div class="config-panel" id="fontPanel">
+              <label for="fontSelect">Tipo de Fuente:</label>
+              <select id="fontSelect">
+                  <option value="Arial">Arial</option>
+                  <option value="Verdana">Verdana</option>
+                  <option value="Georgia">Georgia</option>
+                  <option value="Times New Roman">Times New Roman</option>
+              </select>
+              <label for="fontSize">Tamaño de Fuente:</label>
+              <select id="fontSize">
+                  <option value="16px">16px</option>
+                  <option value="18px">18px</option>
+                  <option value="20px">20px</option>
+                  <option value="24px">24px</option>
+              </select>
+              <button onclick="applyFont()">Aplicar Fuente</button>
+          </div>
+          <div>
+              <span id="colorDesc">Colores que se utilizarán en esta página</span>
+              <button aria-describedby="colorDesc" id="colorB" type="button">Colores</button>
+          </div>
+          <div class="config-panel" id="colorPanel">
+              <label for="bgColor">Color de Fondo:</label>
+              <input type="color" id="bgColor" value="#ffffff">
+              <label for="textColor">Color de Texto:</label>
+              <input type="color" id="textColor" value="#000000">
+              <button onclick="applyColors()">Aplicar Colores</button>
+          </div>
+      </div>
+
+      <!-- Sección 2 -->
+      <button class="accordion">Personalizar la página</button>
+      <div class="panel">
+          <p>Saturación del contenido</p>
+          <div>
+              <button class="btn btn-low" onclick="setSaturation('low')">Saturación Baja</button>
+              <button class="btn btn-high" onclick="setSaturation('high')">Saturación Alta</button>
+              <button class="btn btn-bw" onclick="setSaturation('bw')">Blanco y Negro</button>
+          </div>
+          <div>
+              <p>Visualizar imagenes</p>
+              <button onclick="toggleImages()">Mostrar/Ocultar Imágenes</button>
+          </div>
+      </div>
+
+      <!-- Sección 3 -->
+      <button class="accordion">Leer página</button>
+      <div class="panel">
+          <p>Presione para escuchar el contenido de la página</p>
+          <button onclick="leerPagina()">Texto en voz alta</button>
+      </div>
+  </div>
+
+
+
+
+
+    <div id="bubble-container"></div>
+    
+  <header class="header, object-retro">
+    <h1 class="hero-title2, outlined-text">EL ARTE DE EL VIAJE DE CHIHIRO</h1>
+
+  </header>
+  <main class="main-content">
+
+
+    <section class="gallery">
+      <div class="image-card">
+        <img src="img/1a.jpg" alt="Escena 1">
+      </div>
+      <div class="image-card">
+        <img src="img/2a.jpg" alt="Escena 2">
+      </div>
+      <div class="image-card">
+        <img src="img/9a.jpg" alt="Escena 3">
+      </div>
+
+    </section>
+
+    <div class="container">
+      <div class="window, review">
+          <img src="img/10a.jpg" alt="Portada del Libro de Arte Retrofuture Femme" width="800px" class="book-cover">
+          <h2>R E S E Ñ A</h2>
+          <p class="o">Una obra cumbre de Miyazaki FICHA TÉCNICA: Título original: Sen to Chihiro no kamikakushi (Spirited Away) Nacionalidad: Japón Año: 2001 Dirección: Hayao Miyazaki Guión: Hayao Miyazaki Producción: Toshio Suzuki Dirección de Fotografía: Atsushi Okui Montaje: Takeshi Seyama Música: Jô Hisaishi Reparto: Película de Animación Género: Animación Duración: 125 min. (Color) Terminología Esencial del Manga/Anime:
+
+            Festival de Berlin 2001 Oso de Oro Mejor Película
+            
+            Oscar 2002 (75ª ed.) Mejor Película de Animación
+            
+            Anime: Término empleado para designar a cualquier producción de animación japonesa. Gekiga: Manga dramático, utiliza elementos del teatro y del cine. Hentai: Manga para adultos, en cuyos contenidos se mezclan la pornografía y la extrema violencia. Kodomo (“niño”): Manga para los más pequeños, en el que los argumentos y el estilo de dibujo son simples. Manga: Palabra con la que los japoneses de hoy se refieren a los comics o historietas. Mangaka: Dibujante profesional de manga. A los mejores se les llama Sensei (“maestro”). Otaku: Aficionado del anime y del manga (en occidente). OVA (“Original Video Animation”): Animes que salen directamente a la venta, en cualquier formato de video. Seinen: Manga dirigido al público masculino desde los 18 hasta los 25 años. Seiyuu: Actores que le dan la voz a los personajes. Shôjo: Manga para chicas adolescentes. Shônen: Manga para chicos adolescentes.</p>
+          <div class="price">$29.99</div>
+          
+      
+        </div>
+     
+      <img src="img/as.png" alt="Flor pixelada" class="pixel-flower flower1">
+      <img src="img/bs.png" alt="Flor pixelada" class="pixel-flower flower2">
+      <img src="img/cs.png" alt="Flor pixelada" class="pixel-flower flower3">
+      <img src="img/ds.png" alt="Flor pixelada" class="pixel-flower flower4">
+  
+  </div>
+
+  </main>
+  <footer>
+    <div class="pagination">
+        <a href="index.html">&laquo;</a>
+        <a href="nuevo4.html">7</a>
+        <a href="index1.html">8</a>
+    
+        <a href="foro3.4.html">9</a>
+    
+        <a href="foro3.4.html">&raquo;</a>
+    </div>
+</footer>
+  <script src="script.js"></script>
+
+</body>
+</html>

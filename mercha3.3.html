@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Merchandising</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+
+body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            letter-spacing: normal;
+            transition: filter 0.3s ease;
+        }
+.ojo{
+   top: 20px; 
+}
+        /* Estilo de la barra lateral */
+        .sidebar {
+            z-index: 9999; 
+            position: fixed;
+            top: 0;
+            right: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #42607C;
+            color: white;
+            overflow-y: auto;
+            transition: right 0.3s ease;
+            padding: 20px;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+            display: none; /* Oculta inicialmente */
+        }
+
+        .sidebar.show {
+            display: block;
+            right: 0;
+        }
+
+        /* Botón de alternar barra */
+        .toggle-btn {
+            z-index: 9999;      
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #39556e;
+            color:   white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            z-index: 1000;
+        }
+
+        .toggle-btn:hover {
+            z-index: 9999; 
+            background-color:  #FF6666;
+        }
+
+        /* Acordeón */
+        .accordion {
+            background-color: #444;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            border: none;
+            outline: none;
+            text-align: left;
+            width: 100%;
+            transition: background-color 0.3s ease;
+            margin-bottom: 5px;
+        }
+
+        .accordion:hover {
+            background-color: #000000;
+        }
+
+        .accordion.active {
+            background-color: #000000;
+        }
+
+        .panel {
+            display: none;
+            background-color:  #42607C;
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        .panel.show {
+            display: block;
+        }
+
+        /* Contenido principal */
+        .content {
+            margin-left: 20px;
+            padding: 20px;
+        }
+
+        /* Estilos adicionales para la personalización */
+        .config-panel {
+            display: none;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            background-color: #000000;
+        }
+
+        .config-panel label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .config-panel input[type="color"],
+        .config-panel select {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .config-panel button {
+            display: block;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: #fff;
+            padding: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-low {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-high {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-bw {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        img {
+            margin-bottom: 10px;
+        }
+        .ajas{
+            margin-top: 50px;
+        }
+
+
+
+        /* ANTIGUO */
+        .navbar {
+            background-color: #42607C;
+            padding: 10px 0;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #FF6666;
+            color: white;
+        }
+
+        .navbar a:active {
+            background-color: #FF3333;
+            color: white;
+        }
+
+        /* Para que el menú sea totalmente responsive */
+        @media (max-width: 600px) {
+            .navbar a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+        }
+
+        /* Estilo abstracto de la sección de Merchandising */
+        .merch-section {
+            background-image: url('https://wallpapers.com/images/hd/triangle-background-9nvsd5zpazvzral6.jpg'); /* Imagen de fondo personalizada */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            padding: 50px 0;
+            position: relative;
+            height: 100vh;
+            color: white;
+            overflow: hidden;
+        }
+
+        /* Triángulos y texto vertical */
+        .left-panel {
+            width: 40%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: #27bda0;
+            clip-path: polygon(0 0, 50% 0, 0 100%);
+        }
+
+        .merch-text {
+            position: absolute;
+            top: 40%;
+            left: 10%;
+            transform: rotate(-90deg);
+            font-size: 36px;
+            color: #ff6699;
+            font-weight: bold;
+        }
+
+        .merch-options {
+            position: absolute;
+            top: 30%;
+            left: 30%;
+            font-size: 18px;
+            color: #99d6ff;
+        }
+
+        /* Imágenes superpuestas en diagonal */
+        .image-grid {
+            position: absolute;
+            right: 0;
+            bottom: 10%;
+            display: flex;
+            flex-wrap: wrap;
+            transform: rotate(-10deg);
+        }
+
+        .image-grid img {
+            margin: 20px;
+            border: 5px solid #27bda0;
+            width: 250px;
+            height: 150px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .image-grid img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsividad para dispositivos móviles */
+        @media (max-width: 800px) {
+            .left-panel {
+                clip-path: polygon(0 0, 100% 0, 0 100%);
+            }
+
+            .merch-text {
+                top: 10%;
+                left: 5%;
+                transform: rotate(0deg);
+            }
+
+            .image-grid {
+                transform: rotate(0deg);
+                justify-content: center;
+                right: 0;
+                bottom: 20%;
+            }
+        }
+
+        footer {
+            background-color:#ebebeb ;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            width: 100%;
+            clear: both;
+        }
+
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            font-size: 30px;
+        }
+
+        .pagination a {
+            color: black;
+            padding: 8px 16px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            margin: 0 4px;
+            transition: background-color 0.3s;
+        }
+
+        .pagination a:hover {
+            background-color: #ffffff;
+      
+        }
+
+        
+    </style>
+</head>
+<body>
+    <button class="toggle-btn" onclick="toggleSidebar()"><i class="fa-solid fa-person" style="font-size: 28px; color: #ffffff;"></i> Menú </button>
+    <div class="sidebar" id="sidebar">
+        <h2 class="ajas">Menú de accesibilidad</h2>
+        <!-- Sección 1 -->
+        <button class="accordion">Texto y colores</button>
+        <div class="panel">
+            <div class="pr">
+                <span id="fontDesc">Tipos de fuente y tamaños que se utilizarán en esta página</span>
+                <button aria-describedby="fontDesc" id="fontB" type="button">Fuentes</button>
+            </div>
+            <div class="config-panel" id="fontPanel">
+                <label for="fontSelect">Tipo de Fuente:</label>
+                <select id="fontSelect">
+                    <option value="Arial">Arial</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                </select>
+                <label for="fontSize">Tamaño de Fuente:</label>
+                <select id="fontSize">
+                    <option value="16px">16px</option>
+                    <option value="18px">18px</option>
+                    <option value="20px">20px</option>
+                    <option value="24px">24px</option>
+                </select>
+                <button onclick="applyFont()">Aplicar Fuente</button>
+            </div>
+            <div>
+                <span id="colorDesc">Colores que se utilizarán en esta página</span>
+                <button aria-describedby="colorDesc" id="colorB" type="button">Colores</button>
+            </div>
+            <div class="config-panel" id="colorPanel">
+                <label for="bgColor">Color de Fondo:</label>
+                <input type="color" id="bgColor" value="#ffffff">
+                <label for="textColor">Color de Texto:</label>
+                <input type="color" id="textColor" value="#000000">
+                <button onclick="applyColors()">Aplicar Colores</button>
+            </div>
+        </div>
+
+        <!-- Sección 2 -->
+        <button class="accordion">Personalizar la página</button>
+        <div class="panel">
+            <p>Saturación del contenido</p>
+            <div>
+                <button class="btn btn-low" onclick="setSaturation('low')">Saturación Baja</button>
+                <button class="btn btn-high" onclick="setSaturation('high')">Saturación Alta</button>
+                <button class="btn btn-bw" onclick="setSaturation('bw')">Blanco y Negro</button>
+            </div>
+            <div>
+                <p>Visualizar imagenes</p>
+                <button onclick="toggleImages()">Mostrar/Ocultar Imágenes</button>
+            </div>
+        </div>
+
+        <!-- Sección 3 -->
+        <button class="accordion">Leer página</button>
+        <div class="panel">
+            <p>Presione para escuchar el contenido de la página</p>
+            <button onclick="leerPagina()">Texto en voz alta</button>
+        </div>
+    </div>
+
+
+
+
+    <!-- Sección de Merchandising -->
+    <div class="merch-section">
+        <div class="left-panel"></div>
+        <div class="merch-text">Merchandising</div>
+        <div class="merch-options">
+            <p>Producto oficiales disponibles</p>
+            <p>¿Dónde comprar?</p>
+            <p>Reseñas de productos populares</p>
+        </div>
+        <div class="image-grid">
+            <img src="https://www.mubis.es/media/articles/30284/290411/edicion-tote-bag-de-el-viaje-de-chihiro-en-blu-ray-original.jpg" alt="Producto 1">
+            <img src="https://mundo-ghibli.com/wp-content/uploads/2024/05/figura-viaje-de-chihiro-1.png" alt="Producto 2">
+            <img src="https://i.etsystatic.com/49581244/r/il/c63a83/6232984509/il_570xN.6232984509_4qqt.jpg" alt="Producto 3">
+        </div>
+    </div>
+
+    <script>
+        // Función para alternar la barra lateral
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('show');
+        }
+
+        // Funcionalidad del acordeón
+        const accordions = document.querySelectorAll('.accordion');
+        accordions.forEach((accordion) => {
+            accordion.addEventListener('click', () => {
+                accordion.classList.toggle('active');
+                const panel = accordion.nextElementSibling;
+                panel.classList.toggle('show');
+            });
+        });
+
+        // Mostrar/Ocultar paneles
+        document.getElementById("fontB").onclick = () => togglePanel("fontPanel");
+        document.getElementById("colorB").onclick = () => togglePanel("colorPanel");
+
+        function togglePanel(panelId) {
+            const panel = document.getElementById(panelId);
+            panel.style.display = panel.style.display === "none" ? "block" : "none";
+        }
+
+        // Aplicar fuentes
+        function applyFont() {
+            const font = document.getElementById("fontSelect").value;
+            const fontSize = document.getElementById("fontSize").value;
+            document.body.style.fontFamily = font;
+            document.body.style.fontSize = fontSize;
+        }
+
+        // Aplicar colores
+        function applyColors() {
+            const bgColor = document.getElementById("bgColor").value;
+            const textColor = document.getElementById("textColor").value;
+            document.body.style.backgroundColor = bgColor;
+            document.body.style.color = textColor;
+        }
+
+        // Cambiar saturación
+        function setSaturation(mode) {
+            const body = document.body;
+            if (mode === 'low') {
+                body.style.filter = 'saturate(50%)';
+            } else if (mode === 'high') {
+                body.style.filter = 'saturate(200%)';
+            } else if (mode === 'bw') {
+                body.style.filter = 'grayscale(100%)';
+            }
+        }
+
+        // Leer la página en voz alta
+        function leerPagina() {
+            const texto = document.body.innerText; // Obtener el texto de la página
+            const speech = new SpeechSynthesisUtterance(texto); // Crear la instancia para hablar
+            speechSynthesis.speak(speech); // Reproducir el texto
+        }
+
+        // Función para mostrar/ocultar imágenes
+        function toggleImages() {
+            const images = document.querySelectorAll('img');
+            images.forEach((img) => {
+                img.style.display = img.style.display === "none" ? "block" : "none";
+            });
+        }
+    </script>
+    <footer>
+        <div class="pagination">
+            <a href="impacto3.1.html">&laquo; Anterior</a>
+            <a href="premios3.2.html">5</a>
+            <a href="mercha3.3.html">6</a>
+            <a href="nuevo4.html">7</a>
+            <a href="foro3.4.html">8</a>
+            <a href="index1.html">Siguiente &raquo;</a>
+        </div>
+    </footer>
+</body>
+</html>
